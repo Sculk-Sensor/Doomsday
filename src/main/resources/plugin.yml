@@ -1,0 +1,6 @@
+name: Doomsday
+version: '${project.version}'
+main: me.sculk_sensor.doomsday.Doomsday
+api-version: 1.17
+authors: [ Sculk-Sensor ]
+description: An "modpack" type plugin that combines a large number of functions. The main gameplay is a expanded survival mode.
