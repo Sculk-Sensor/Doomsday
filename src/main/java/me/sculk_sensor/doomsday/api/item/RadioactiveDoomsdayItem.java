@@ -1,13 +1,13 @@
 package me.sculk_sensor.doomsday.api.item;
 
-import me.sculk_sensor.doomsday.core.attribute.Radioactive;
+import me.sculk_sensor.doomsday.api.attributes.Radioactive;
 
 public class RadioactiveDoomsdayItem extends DoomsdayItem implements Radioactive {
 
 	private final double radioactiveIntensity;
 
-	public RadioactiveDoomsdayItem(String id, double radioactiveIntensity) {
-		super(id);
+	public RadioactiveDoomsdayItem(DoomsdayItemStack itemStack, double radioactiveIntensity) {
+		super(itemStack);
 		this.radioactiveIntensity = radioactiveIntensity;
 	}
 

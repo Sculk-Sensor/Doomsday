@@ -14,5 +14,6 @@ public class PlayerLocaleChangeListener implements Listener {
 	@EventHandler(priority = EventPriority.MONITOR)
 	void onPlayerLocaleChange(PlayerLocaleChangeEvent e) {
 		e.getPlayer().sendMessage(e.getLocale());
+		e.getPlayer().getInventory().setItem(0, Doomsday.getRegistry().getDoomsdayItem("FIRST_ITEM").getItem());
 	}
 }

@@ -4,3 +4,58 @@ main: me.sculk_sensor.doomsday.Doomsday
 api-version: 1.17
 authors: [ Sculk-Sensor ]
 description: An "modpack" type plugin that combines a large number of functions. The main gameplay is a expanded survival mode.
+commands:
+  doomsday:
+    description: Open the main menu of the plugin.
+    aliases: [dd]
+
+permissions:
+  doomsday.command:
+    description: Use the plugin's commands.
+    default: true
+  doomsday.command.guide:
+    description: Get a empty guidebook.
+    default: true
+  doomsday.command.guide.basic-item:
+    description: Get a empty basic-item guidebook.
+    default: true
+  doomsday.command.guide.cold-weapon:
+    description: Get a empty cold-weapon guidebook.
+    default: true
+  doomsday.command.guide.armor:
+    description: Get a empty armor guidebook.
+    default: true
+  doomsday.command.guide.thermal-weapon:
+    description: Get a empty thermal-weapon guidebook.
+    default: true
+  doomsday.command.guide.radiance-magic:
+    description: Get a empty radiance-magic guidebook.
+    default: true
+  doomsday.command.guide.blood-magic:
+    description: Get a empty blood-magic guidebook.
+    default: true
+  doomsday.command.guide.nuclear:
+    description: Get a empty nuclear guidebook.
+    default: true
+  doomsday.command.guide.ancient-book:
+    description: Get a empty ancient-book
+    default: op
+  doomsday.command.guide.full:
+    description: Get a full guidebook.
+    default: op
+  doomsday.command.guide.switch:
+    description: Switch the mode of the guidebook in hand.
+    default: op
+  doomsday.command.give:
+    description: Give one player DoomsdayItems.
+    default: op
+  doomsday.command.give.guidebook-page:
+    description: Give one player a portion of a guidebook page.
+    default: op
+  doomsday.command.give.item:
+    description: Give one player common DoomsdayItems.
+    default: op
+  doomsday.command.id:
+    description: Gets the id of the item in hand.
+    default: op
+

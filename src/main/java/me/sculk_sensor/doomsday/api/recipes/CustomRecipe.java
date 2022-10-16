@@ -12,10 +12,12 @@ public class CustomRecipe implements Keyed {
 	private final NamespacedKey key;
 	private final RecipeType recipeType;
 	private final ItemStack[] recipe;
+	private final RecipeOutput recipeOutput;
 	private final int recipeSize;
-	public CustomRecipe(RecipeType recipeType, ItemStack... recipe) {
+	public CustomRecipe(RecipeType recipeType, RecipeOutput recipeOutput, ItemStack... recipe) {
 		this.key = new NamespacedKey(Doomsday.instance(), recipeType.toString() + Arrays.toString(recipe));
 		this.recipeType = recipeType;
+		this.recipeOutput = recipeOutput;
 		this.recipeSize = recipe.length;
 		this.recipe = recipe;
 	}
@@ -30,6 +32,9 @@ public class CustomRecipe implements Keyed {
 
 	public int getRecipeSize() {
 		return recipeSize;
+	}
+	public RecipeOutput getRecipeOutput() {
+		return recipeOutput;
 	}
 
 	@Nonnull
