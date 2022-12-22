@@ -22,7 +22,7 @@ public class ItemDataService implements Keyed {
 
 	public void setItemData(@Nonnull ItemStack item, @Nonnull String data) {
 		Validate.notNull(item, "The item cannot be null!");
-		Validate.notNull(data, "Cannot store null on an item!");
+		Validate.notNull(data, "Cannot store null on an ItemStack!");
 		ItemMeta itemMeta = item.getItemMeta();
 		Validate.notNull(itemMeta, "The ItemMeta of the item is null");
 		setItemData(itemMeta, data);
@@ -36,19 +36,19 @@ public class ItemDataService implements Keyed {
 		container.set(namespacedKey, PersistentDataType.STRING, data);
 	}
 
-	public @Nonnull Optional<String> getItemData(@Nullable ItemStack item) {
+	public String getItemData(@Nullable ItemStack item) {
 		if (item == null || item.getType() == Material.AIR || !item.hasItemMeta()) {
-			return Optional.empty();
+			return null;
 		}
 		ItemMeta itemMeta = item.getItemMeta();
 		Validate.notNull(itemMeta, "The ItemMeta of the item is null");
 		return getItemData(itemMeta);
 	}
 
-	public @Nonnull Optional<String> getItemData(@Nonnull ItemMeta meta) {
+	public String getItemData(@Nonnull ItemMeta meta) {
 		Validate.notNull(meta, "Cannot read data from null!");
 		PersistentDataContainer container = meta.getPersistentDataContainer();
-		return Optional.ofNullable(container.get(namespacedKey, PersistentDataType.STRING));
+		return container.get(namespacedKey, PersistentDataType.STRING);
 	}
 
 	@Nonnull

@@ -43,13 +43,17 @@ public abstract class MainCommand implements CommandExecutor{
 			plugin.getLogger().log(Level.SEVERE, "MainCommand registration failed!");
 		}
 	}
-	protected final void dfsSetTire(int tire, SubCommand subCommand) {
+	protected final void dfsSetTire(int tire, SubCommand subCommands) {
 		if (tire == 1) {
 			tire = 2;
 		}
-		subCommand.setTire(this, tire);
-		for (SubCommand nextSubCommand : subCommand.subCommands) {
-			dfsSetTire(tire + 1, nextSubCommand);
+		if (subCommands.tire == -1) {
+			subCommands.setTire(this, tire);
+		} else {
+			tire = subCommands.tire;
+		}
+		for (SubCommand subCommand : subCommands.subCommands) {
+			dfsSetTire(tire + 1, subCommand);
 		}
 	}
 	protected final void setSubCommandTire() {

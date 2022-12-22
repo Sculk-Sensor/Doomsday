@@ -7,11 +7,12 @@ import org.bukkit.event.player.PlayerItemDamageEvent;
 import javax.annotation.Nonnull;
 
 public interface DamageBlockHandler extends ItemHandler {
-	void onBlockDamageEvent(BlockDamageEvent event);
+	void onPlayerDamageBlock(BlockDamageEvent event);
 
 	@Nonnull
 	@Override
 	default Class<? extends ItemHandler> getIdentifier() {
 		return DamageBlockHandler.class;
 	}
+
 }

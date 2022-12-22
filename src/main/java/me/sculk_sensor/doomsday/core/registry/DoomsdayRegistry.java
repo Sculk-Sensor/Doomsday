@@ -1,9 +1,9 @@
 package me.sculk_sensor.doomsday.core.registry;
 
 import me.sculk_sensor.doomsday.Doomsday;
-import me.sculk_sensor.doomsday.api.exception.DoomsdayItemDuplicateRegistrationException;
 import me.sculk_sensor.doomsday.api.item.DoomsdayItem;
 import me.sculk_sensor.doomsday.api.attributes.Radioactive;
+import me.sculk_sensor.doomsday.api.item.ItemHandler;
 import me.sculk_sensor.doomsday.api.item.itemgroup.ItemGroup;
 import org.bukkit.inventory.ItemStack;
 
@@ -19,6 +19,7 @@ public class DoomsdayRegistry {
 	private final List<DoomsdayItem> radioactiveItemsList = new ArrayList<>();
 	private final Map<DoomsdayItem, Double> radioactiveIntensity = new HashMap<>();
 	private final List<ItemGroup> itemGroups = new ArrayList<>();
+	private final Map<DoomsdayItem, Map<Class<? extends ItemHandler>, List<ItemHandler>>> handlerList = new HashMap<>();
 
 	public void registerItem(DoomsdayItem doomsdayItem) {
 		if (ids.containsKey(doomsdayItem.getId())) {
@@ -60,8 +61,59 @@ public class DoomsdayRegistry {
 		if (itemStack == null) {
 			return null;
 		}
-		return getDoomsdayItem(Doomsday.getItemIdService().getItemData(itemStack).orElse(null));
+		return getDoomsdayItem(Doomsday.getItemIdService().getItemData(itemStack));
 	}
+
+	public void addItemHandler(DoomsdayItem doomsdayItem, ItemHandler handler) {
+		Map<Class<? extends ItemHandler>, List<ItemHandler>> target = new HashMap<>();
+		if (!handlerList.containsKey(doomsdayItem)) {
+			handlerList.put(doomsdayItem, new HashMap<>());
+		} else {
+			if (handlerList.get(doomsdayItem) == null) {
+				handlerList.replace(doomsdayItem, new HashMap<>());
+			}
+		}
+		target = handlerList.get(doomsdayItem);
+		if (!target.containsKey(handler.getIdentifier())) {
+			target.put(handler.getIdentifier(), new ArrayList<>());
+		}
+		target.get(handler.getIdentifier()).add(handler);
+	}
+
+	public boolean hasHandler(DoomsdayItem doomsdayItem) {
+		return handlerList.containsKey(doomsdayItem);
+	}
+
+	public boolean hasHandler(DoomsdayItem doomsdayItem, Class<? extends ItemHandler> identifier) {
+		if (hasHandler(doomsdayItem)) {
+			return  handlerList.get(doomsdayItem).containsKey(identifier);
+		}
+		return false;
+	}
+
+	public boolean hasHandler(String id) {
+		return handlerList.containsKey(getDoomsdayItem(id));
+	}
+
+	public boolean hasHandler(String id, Class<? extends ItemHandler> identifier) {
+		if (hasHandler(getDoomsdayItem(id))) {
+			return handlerList.get(getDoomsdayItem(id)).containsKey(identifier);
+		}
+		return false;
+	}
+
+	public Map<Class<? extends ItemHandler>, List<ItemHandler>> getHandlers(String id) {
+		return handlerList.getOrDefault(getDoomsdayItem(id), null);
+	}
+
+	public List<ItemHandler> getHandlers(String id, Class<? extends ItemHandler> identifier) {
+		Map<Class<? extends ItemHandler>, List<ItemHandler>> target = getHandlers(id);
+		if (target == null) {
+			return null;
+		}
+		return target.getOrDefault(identifier, null);
+	}
+
 	public DoomsdayItem getDoomsdayItem(String id) {
 		return ids.getOrDefault(id, null);
 	}

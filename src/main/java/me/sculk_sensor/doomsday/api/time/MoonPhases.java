@@ -13,7 +13,7 @@ public enum MoonPhases {
 	WAXING_GIBBOUS_MOON(7, "waxing-gibbous-moon");
 	private final int index;
 	private final String name;
-	private MoonPhases(int index, String name) {
+	MoonPhases(int index, String name) {
 		this.index = index;
 		this.name = name;
 	}

@@ -6,4 +6,5 @@ import java.util.Optional;
 public interface ItemHandler {
 	@Nonnull
 	Class<? extends ItemHandler> getIdentifier();
+
 }

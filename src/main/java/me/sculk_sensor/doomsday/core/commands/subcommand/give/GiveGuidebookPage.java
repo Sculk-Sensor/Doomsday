@@ -11,7 +11,7 @@ import java.util.List;
 
 public class GiveGuidebookPage extends SubCommand {
 	public GiveGuidebookPage(Doomsday plugin, MainCommand mainCommand, String name, boolean hidden, SubCommand... subCommands) {
-		super(plugin, mainCommand, name, hidden, subCommands);
+		super(plugin, mainCommand, name, hidden, 4, subCommands);
 	}
 
 	@Override

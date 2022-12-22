@@ -4,7 +4,7 @@ public enum GuidebookMode {
 	SURVIVAL_MODE("survival"),
 	CHEAT_MODE("cheat");
 	private final String id;
-	private GuidebookMode(String id) {
+	GuidebookMode(String id) {
 		this.id = id;
 	}
 

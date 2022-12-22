@@ -29,7 +29,18 @@ public abstract class SubCommand {
 		this.name = name;
 		this.hidden = hidden;
 		this.subCommands = List.of(subCommands);
+		this.tire = -1;
 	}
+
+	public SubCommand(Doomsday plugin, MainCommand mainCommand, String name, boolean hidden, int tire, SubCommand... subCommands) {
+		this.plugin = plugin;
+		this.mainCommand = mainCommand;
+		this.name = name;
+		this.hidden = hidden;
+		this.subCommands = List.of(subCommands);
+		this.tire = tire;
+	}
+
 	public String getName() {
 		return name;
 	}

@@ -16,9 +16,9 @@ import java.util.List;
 public class ItemGroup implements Keyed {
 	private final JavaPlugin plugin;
 	protected final List<DoomsdayItem> itemList = new ArrayList<>();
-	protected List<ItemGroup> subGroups;
+	protected final List<ItemGroup> subGroups;
 	protected ItemGroup fatherGroup;
-	protected String id;
+	protected final String id;
 	protected final NamespacedKey key;
 	protected final ItemStack icon;
 	protected final int priority;
